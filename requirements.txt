@@ -5,7 +5,7 @@ pymysql
 asyncmy
 cryptography
 requests
-pyCryptomusAPI
+
 yookassa
 alembic
 wait-for-it

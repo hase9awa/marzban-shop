@@ -43,7 +43,6 @@ async def main():
     setup_middlewares()
     glv.dp.startup.register(on_startup)
 
-    app.router.add_post("/cryptomus_payment", check_crypto_payment)
     app.router.add_post("/yookassa_payment", check_yookassa_payment)
     
     webhook_requests_handler = SimpleRequestHandler(

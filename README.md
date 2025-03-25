@@ -17,7 +17,7 @@ It is a Telegram bot shop powered by aiogram that provides VPN sales via Telegra
 ### Features
 
 - Test subscriptions
-- Two payment methods: [Cryptomus](https://cryptomus.com/) and [YooKassa](https://yookassa.ru/)
+- Two payment methods: Telegram Stars and [YooKassa](https://yookassa.ru/)
 - Interface in Russian and English
 
 ### Dependencies
@@ -81,8 +81,7 @@ docker compose up -d
 | YOOKASSA_TOKEN | YooKassa's token |
 | YOOKASSA_SHOPID | YooKassa's shopId |
 | EMAIL | Email for receipts |
-| CRYPTO_TOKEN | Cryptomus token |
-| MERCHANT_UUID | Cryptomus' Merchant UUID |
+| TELEGRAM_STARS_ENABLED | Enable Telegram Stars payments (true/false) |
 | DB_NAME | Database name |
 | DB_USER | Database username |
 | DB_PASS | Database password |

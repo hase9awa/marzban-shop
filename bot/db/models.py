@@ -30,3 +30,13 @@ class YPayments(Base):
     payment_id = Column(String(64))
     chat_id = Column(BigInteger)
     callback = Column(String(64))
+
+class TGStarsPayments(Base):
+    __tablename__ = "tgstars_payments"
+
+    id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
+    tg_id = Column(BigInteger)
+    lang = Column(String(64))
+    order_id = Column(String(64))
+    chat_id = Column(BigInteger)
+    callback = Column(String(64))

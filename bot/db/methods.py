@@ -3,7 +3,7 @@ import hashlib
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy import insert, select, update, delete
 
-from db.models import YPayments, CPayments, VPNUsers
+from db.models import YPayments, CPayments, VPNUsers, TGStarsPayments
 import glv
 
 engine = create_async_engine(glv.config['DB_URL'])
@@ -55,6 +55,12 @@ async def add_cryptomus_payment(tg_id: int, callback: str, chat_id: int, lang_co
         await conn.execute(sql_q)
         await conn.commit()
 
+async def add_telegram_stars_payment(tg_id: int, callback: str, chat_id: int, lang_code: str, order_id: str) -> dict:
+    async with engine.connect() as conn:
+        sql_q = insert(TGStarsPayments).values(tg_id=tg_id, order_id=order_id, chat_id=chat_id, callback=callback, lang=lang_code)
+        await conn.execute(sql_q)
+        await conn.commit()
+
 async def get_yookassa_payment(payment_id) -> YPayments:
     async with engine.connect() as conn:
         sql_q = select(YPayments).where(YPayments.payment_id == payment_id)
@@ -67,11 +73,20 @@ async def get_cryptomus_payment(order_id) -> CPayments:
         payment: CPayments = (await conn.execute(sql_q)).fetchone()
     return payment
 
+async def get_telegram_stars_payment(order_id) -> TGStarsPayments:
+    async with engine.connect() as conn:
+        sql_q = select(TGStarsPayments).where(TGStarsPayments.order_id == order_id)
+        payment: TGStarsPayments = (await conn.execute(sql_q)).fetchone()
+    return payment
+
 async def delete_payment(payment_id):
     async with engine.connect() as conn:
         sql_q = delete(YPayments).where(YPayments.payment_id == payment_id)
         await conn.execute(sql_q)
         await conn.commit()
         sql_q = delete(CPayments).where(CPayments.payment_uuid == payment_id)
+        await conn.execute(sql_q)
+        await conn.commit()
+        sql_q = delete(TGStarsPayments).where(TGStarsPayments.order_id == payment_id)
         await conn.execute(sql_q)
         await conn.commit()
