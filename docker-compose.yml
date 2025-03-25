@@ -17,8 +17,7 @@ services:
             YOOKASSA_TOKEN: ${YOOKASSA_TOKEN}
             YOOKASSA_SHOPID: ${YOOKASSA_SHOPID}
             EMAIL: ${EMAIL}
-            CRYPTO_TOKEN: ${CRYPTO_TOKEN}
-            MERCHANT_UUID: ${MERCHANT_UUID}
+            TELEGRAM_STARS_ENABLED: ${TELEGRAM_STARS_ENABLED}
             DB_NAME: ${DB_NAME}
             DB_USER: ${DB_USER}
             DB_PASS: ${DB_PASS}

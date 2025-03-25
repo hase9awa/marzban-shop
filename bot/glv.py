@@ -15,7 +15,7 @@ config = {
     'YOOKASSA_TOKEN': os.environ.get('YOOKASSA_TOKEN'),
     'YOOKASSA_SHOPID': os.environ.get('YOOKASSA_SHOPID'),
     'EMAIL': os.environ.get('EMAIL'),
-    'TELEGRAM_STARS_ENABLED': True,  # Включение оплаты через Telegram Stars
+    'TELEGRAM_STARS_ENABLED': os.environ.get('TELEGRAM_STARS_ENABLED', 'false').lower() == 'true',
     'PANEL_HOST': os.environ.get('PANEL_HOST'),
     'PANEL_GLOBAL': os.environ.get('PANEL_GLOBAL'),
     'PANEL_USER': os.environ.get('PANEL_USER'),
